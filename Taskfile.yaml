@@ -10,8 +10,10 @@ tasks:
     cmd: bun run dev
 
   lint:
-    desc: Run Biome check
-    cmd: "{{.BUNX}} biome check ."
+    desc: Run Biome check + ast-grep rules
+    cmds:
+      - "{{.BUNX}} biome check ."
+      - ast-grep scan
 
   lint:fix:
     desc: Run Biome check with auto-fix
