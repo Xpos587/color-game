@@ -1,7 +1,7 @@
 "use client";
 
 import { useMountEffect } from "@/lib/useMountEffect";
-import { useState, useRef, useCallback } from "react";
+import { useState } from "react";
 import type { RoundResult } from "@/types/game";
 import { hsbToCss, getTotalFeedback } from "@/lib/color";
 import { ColorSwatch } from "@/components/ui/ColorSwatch";

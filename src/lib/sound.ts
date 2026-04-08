@@ -3,7 +3,7 @@ let _muted = false;
 
 function createCtx(): AudioContext {
   if (!audioCtx || audioCtx.state === "closed") {
-    audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+    audioCtx = new (window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext)();
   }
   return audioCtx;
 }

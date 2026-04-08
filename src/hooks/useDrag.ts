@@ -11,16 +11,12 @@ interface UseDragOptions {
 export function useDrag({ onDrag, onDragStart, onDragEnd }: UseDragOptions) {
   const [isDragging, setIsDragging] = useState(false);
   const lastY = useRef(0);
-  const onDragRef = useRef(onDrag);
-
-  // Rule 1: derive, don't sync
-  onDragRef.current = onDrag;
 
   const handleMove = useCallback((clientY: number) => {
     const deltaY = clientY - lastY.current;
     lastY.current = clientY;
-    onDragRef.current(deltaY);
-  }, []);
+    onDrag(deltaY);
+  }, [onDrag]);
 
   const handleStart = useCallback(
     (clientY: number) => {

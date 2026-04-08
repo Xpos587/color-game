@@ -12,18 +12,14 @@ export function useTimer(
   const rafRef = useRef<number>(0);
   const fallbackRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const startTimeRef = useRef<number>(0);
-  const onExpireRef = useRef(onExpire);
   const generationRef = useRef(0);
-
-  // Keep ref in sync — Rule 1: derive, don't sync
-  onExpireRef.current = onExpire;
 
   const expire = useCallback((gen: number) => {
     if (generationRef.current !== gen) return;
     setIsRunning(false);
     setTimeLeft(0);
-    onExpireRef.current();
-  }, []);
+    onExpire();
+  }, [onExpire]);
 
   const start = useCallback((d?: number) => {
     if (rafRef.current) cancelAnimationFrame(rafRef.current);

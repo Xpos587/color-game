@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback } from "react";
 import { useMountEffect } from "@/lib/useMountEffect";
 import { useTimer } from "@/hooks/useTimer";
 import { hsbToCss, textColorForBg } from "@/lib/color";
@@ -18,19 +18,9 @@ interface MemorizeScreenProps {
 
 function MemorizeTimer({ timeLimit, onTimeUp, sound, textColor }: { timeLimit: number; onTimeUp: () => void; sound: ReturnType<typeof useSound>; textColor: string }) {
   const { timeLeft, start } = useTimer(timeLimit, onTimeUp);
-  const lastProgressRef = useRef(-1);
 
-  // Update flutter based on timer progress — using callback pattern to avoid render-time side effects
-  const prevTimeLeftRef = useRef(timeLeft);
-  if (timeLeft !== prevTimeLeftRef.current) {
-    prevTimeLeftRef.current = timeLeft;
-    const progress = 1 - Math.max(0, timeLeft) / timeLimit;
-    // Only update when progress crosses a meaningful threshold (avoid excessive updates)
-    if (Math.abs(progress - lastProgressRef.current) > 0.01) {
-      lastProgressRef.current = progress;
-      sound.flutterUpdate(progress);
-    }
-  }
+  // Derive progress from timeLeft — no ref needed, just compute inline
+  const progress = 1 - Math.max(0, timeLeft) / timeLimit;
 
   // Rule 4: mount-only start
   useMountEffect(() => {
@@ -38,6 +28,10 @@ function MemorizeTimer({ timeLimit, onTimeUp, sound, textColor }: { timeLimit: n
     sound.flutterStart();
     return () => sound.flutterStop();
   });
+
+  // Update flutter sound on each timeLeft change
+  const updateFlutter = useCallback((p: number) => { sound.flutterUpdate(p); }, [sound]);
+  updateFlutter(progress);
 
   const displayInteger = Math.ceil(timeLeft);
   const fixed = timeLeft.toFixed(2);
