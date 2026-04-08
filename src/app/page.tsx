@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import { useMountEffect } from "@/lib/useMountEffect";
 import { GameShell } from "@/components/game/GameShell";
 import { Screen } from "@/components/game/Screen";

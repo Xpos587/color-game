@@ -15,7 +15,6 @@ interface CountdownControllerProps {
   sound: ReturnType<typeof useSound>;
 }
 
-const WORDS = ["Ready", "Set", "Go"] as const;
 
 export function CountdownController({
   step,

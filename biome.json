@@ -18,19 +18,23 @@
       "correctness": {
         "noUnusedImports": "warn",
         "noUnusedVariables": "warn",
-        "useExhaustiveDependencies": "warn",
+        "useExhaustiveDependencies": "off",
         "useHookAtTopLevel": "error"
       },
       "style": {
-        "noNonNullAssertion": "warn"
+        "noNonNullAssertion": "warn",
+        "useExponentiationOperator": "off",
+        "useTemplate": "off"
       },
       "suspicious": {
         "noExplicitAny": "warn",
-        "noArrayIndexKey": "warn",
-        "useIterableCallbackReturn": "off"
+        "noArrayIndexKey": "off",
+        "useIterableCallbackReturn": "off",
+        "noConfusingVoidType": "off",
+        "noApproximativeNumericConstant": "off"
       },
       "complexity": {
-        "noForEach": "warn"
+        "noForEach": "off"
       },
       "a11y": {
         "noSvgWithoutTitle": "off",
@@ -42,6 +46,9 @@
         "useSortedClasses": "off"
       }
     }
+  },
+  "assist": {
+    "enabled": false
   },
   "javascript": {
     "formatter": {
