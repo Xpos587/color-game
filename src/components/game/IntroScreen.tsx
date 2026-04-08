@@ -3,7 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import { useMountEffect } from "@/lib/useMountEffect";
 import type { GameMode } from "@/types/game";
-import { cn } from "@/lib/utils";
+import { css, cx } from "styled-system/css";
 import { ModeToggle } from "@/components/ui/ModeToggle";
 import type { useSound } from "@/hooks/useSound";
 
@@ -152,25 +152,29 @@ export function IntroScreen({ mode, onModeChange, onPlay, sound }: IntroScreenPr
   }, [sound]);
 
   return (
-    <div ref={containerRef} className="relative flex h-full w-full flex-col bg-black">
+    <div ref={containerRef} className={css({ position: "relative", display: "flex", height: "full", width: "full", flexDirection: "column", background: "black" })}>
       {/* Leaderboard button — mobile: bottom-right */}
       <button
         type="button"
-        className="absolute z-20 flex items-center justify-center rounded-full text-white/50 transition-[transform,color] duration-150 intro-trophy-mobile"
+        className={cx("intro-trophy-mobile", css({ position: "absolute", zIndex: "20", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "full", color: "rgba(255, 255, 255, 0.5)", transition: "transform 0.15s ease, color 0.15s ease" }))}
         style={{ bottom: 'calc(30px + env(safe-area-inset-bottom, 0px))', right: '30px', width: '32px', height: '32px', background: 'none', border: 'none' }}
         aria-label="High Scores"
         onClick={() => sound.robotHighscores()}
         onMouseEnter={() => sound.hover()}
       >
-        <TrophyIcon className="size-[24px]" />
+        <TrophyIcon className={css({ width: "24px", height: "24px" })} />
       </button>
 
       {/* Title */}
       <h1
-        className={cn(
-          "intro-title text-white leading-none",
-          "font-medium tracking-[-5.52px]",
-          rgbSplitActive && "animate-[rgbSplit_0.55s_ease-in-out]"
+        className={cx(
+          "intro-title",
+          css({ color: "white", lineHeight: "1", fontWeight: "500", letterSpacing: "-5.52px" }),
+          rgbSplitActive && css({
+            animationName: "rgbSplit",
+            animationDuration: "0.55s",
+            animationTimingFunction: "ease-in-out",
+          }),
         )}
       >
         color
@@ -184,7 +188,7 @@ export function IntroScreen({ mode, onModeChange, onPlay, sound }: IntroScreenPr
       </div>
 
       {/* Mode buttons area — absolute bottom */}
-      <div className="intro-mode-buttons absolute flex items-center">
+      <div className={cx("intro-mode-buttons", css({ position: "absolute", display: "flex", alignItems: "center" }))}>
         {/* Solo play button — with rainbow ring + hum */}
         <button
           ref={soloRef}
@@ -192,35 +196,43 @@ export function IntroScreen({ mode, onModeChange, onPlay, sound }: IntroScreenPr
           onClick={onPlay}
           onMouseEnter={handleSoloEnter}
           onMouseLeave={handleSoloLeave}
-          className={cn(
-            "play-button flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full",
-            "bg-white text-black shadow-[0_2px_8px_rgba(0,0,0,0.15)]",
-            "hover:text-white hover:scale-[1.04]",
-            "active:scale-[0.94]"
-          )}
+          className={cx("play-button", css({
+            display: "flex",
+            height: "64px",
+            width: "64px",
+            flexShrink: "0",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "full",
+            background: "white",
+            color: "black",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+            _hover: { color: "white", scale: "1.04" },
+            _active: { scale: "0.94" },
+          }))}
           aria-label="Play solo"
         >
-          <PersonIcon className="size-[29px]" />
+          <PersonIcon className={css({ width: "29px", height: "29px" })} />
         </button>
 
         {/* Multiplayer button (visual only) */}
         <button
           type="button"
           onMouseEnter={() => sound.multiHover()}
-          className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-white text-black shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-[transform] duration-300 ease-out hover:scale-[1.04] active:scale-[0.94] cursor-default"
+          className={css({ display: "flex", height: "64px", width: "64px", flexShrink: "0", alignItems: "center", justifyContent: "center", borderRadius: "full", background: "white", color: "black", boxShadow: "0 2px 8px rgba(0,0,0,0.15)", transition: "transform 0.3s ease-out", _hover: { scale: "1.04" }, _active: { scale: "0.94" }, cursor: "default" })}
           aria-label="Multiplayer (coming soon)"
         >
-          <UsersIcon className="size-[29px]" />
+          <UsersIcon className={css({ width: "29px", height: "29px" })} />
         </button>
 
         {/* Daily button (visual only) */}
         <button
           type="button"
           onMouseEnter={() => sound.hover()}
-          className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-white text-black shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-[transform] duration-300 ease-out hover:scale-[1.04] active:scale-[0.94] cursor-default"
+          className={css({ display: "flex", height: "64px", width: "64px", flexShrink: "0", alignItems: "center", justifyContent: "center", borderRadius: "full", background: "white", color: "black", boxShadow: "0 2px 8px rgba(0,0,0,0.15)", transition: "transform 0.3s ease-out", _hover: { scale: "1.04" }, _active: { scale: "0.94" }, cursor: "default" })}
           aria-label="Daily challenge (coming soon)"
         >
-          <CalendarIcon className="size-[29px]" />
+          <CalendarIcon className={css({ width: "29px", height: "29px" })} />
         </button>
 
         {/* Mode toggle */}
@@ -229,12 +241,12 @@ export function IntroScreen({ mode, onModeChange, onPlay, sound }: IntroScreenPr
         {/* Leaderboard button — desktop only, hidden on mobile (shown above instead) */}
         <button
           type="button"
-          className="hidden md:flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full text-[#808080] transition-[transform,color] duration-150 hover:scale-[1.08] hover:text-white active:scale-[0.95] cursor-default"
+          className={css({ display: { base: "none", _desktop: "flex" }, height: "64px", width: "64px", flexShrink: "0", alignItems: "center", justifyContent: "center", borderRadius: "full", color: "#808080", transition: "transform 0.15s ease, color 0.15s ease", _hover: { scale: "1.08", color: "white" }, _active: { scale: "0.95" }, cursor: "default" })}
           aria-label="High Scores"
           onMouseEnter={() => sound.hover()}
           onClick={() => sound.robotHighscores()}
         >
-          <TrophyIcon className="size-[29px]" />
+          <TrophyIcon className={css({ width: "29px", height: "29px" })} />
         </button>
       </div>
 

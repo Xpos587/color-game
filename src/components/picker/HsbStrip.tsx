@@ -3,6 +3,7 @@
 import { useCallback, useRef } from "react";
 import { StripHandle } from "./StripHandle";
 import { useDrag } from "@/hooks/useDrag";
+import { css, cx } from "styled-system/css";
 
 interface HsbStripProps {
   type: "hue" | "saturation" | "brightness";
@@ -76,7 +77,7 @@ export function HsbStrip({ type, value, hue, onChange, onDragStart, onDragEnd }:
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full cursor-pointer overflow-hidden no-touch-action"
+      className={cx("no-touch-action", css({ position: "relative", width: "full", height: "full", cursor: "pointer", overflow: "hidden" }))}
       style={{ background: getGradient(type, hue) }}
       onClick={handleStripClick}
     >

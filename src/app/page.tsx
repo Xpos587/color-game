@@ -13,6 +13,7 @@ import { TotalScreen } from "@/components/game/TotalScreen";
 import { useGameLoop } from "@/hooks/useGameLoop";
 import { useSound } from "@/hooks/useSound";
 import { calculateScore } from "@/lib/color";
+import { css } from "styled-system/css";
 
 export default function Home() {
   const {
@@ -106,7 +107,7 @@ export default function Home() {
       : null;
 
   return (
-    <main className="h-full">
+    <main className={css({ height: "full" })}>
       <GameShell fadeActive={fadeActive || startFade} fastFade={startFade}>
         <Screen id="intro" isActive={state.screen === "intro"}>
           <IntroScreen
@@ -145,7 +146,7 @@ export default function Home() {
         </Screen>
 
         <Screen id="fade-to-black" isActive={state.screen === "fade-to-black"}>
-          <div className="flex h-full w-full bg-black" />
+          <div className={css({ display: "flex", height: "full", width: "full", background: "black" })} />
         </Screen>
 
         <Screen id="picker" isActive={state.screen === "picker"}>

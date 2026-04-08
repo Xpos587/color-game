@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cx } from "styled-system/css";
 import type { GameScreen } from "@/types/game";
 
 interface ScreenProps {
@@ -14,7 +14,7 @@ export function Screen({ id, isActive, children, className }: ScreenProps) {
   return (
     <div
       id={`screen-${id}`}
-      className={cn("screen", isActive && "active", className)}
+      className={cx("screen", isActive && "active", className)}
     >
       {children}
     </div>
