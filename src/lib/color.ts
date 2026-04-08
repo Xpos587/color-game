@@ -562,14 +562,9 @@ export function randomHsb(): HSB {
 /** Check if a color is light enough to need dark text */
 export function textColorForBg(hsb: HSB): string {
   const { r, g, b } = hsbToRgb(hsb)
+  // Relative luminance (simplified)
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-  return luminance > 0.45 ? "#000" : "#fff"
-}
-
-export function labelColorForBg(hsb: HSB): string {
-  const { r, g, b } = hsbToRgb(hsb)
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-  return luminance > 0.45 ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.5)"
+  return luminance > 0.4 ? "#000" : "#fff"
 }
 
 export function randomPickerDefault(targetH: number): HSB {

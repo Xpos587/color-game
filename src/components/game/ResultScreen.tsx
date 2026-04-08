@@ -3,7 +3,7 @@
 import { useCallback, useState } from "react"
 import { AnimatedScore } from "@/components/ui/AnimatedScore"
 import type { useSound } from "@/hooks/useSound"
-import { getScoreFeedback, hsbToCss, labelColorForBg, textColorForBg } from "@/lib/color"
+import { getScoreFeedback, hsbToCss } from "@/lib/color"
 import type { HSB } from "@/types/game"
 
 interface ResultScreenProps {
@@ -30,15 +30,6 @@ export function ResultScreen({
   const targetColor = hsbToCss(targetHsb)
   const playerColor = hsbToCss(playerHsb)
 
-  // Dynamic text colors — adapted to the background of each half
-  const topTextColor = textColorForBg(playerHsb)
-  const topLabelColor = labelColorForBg(playerHsb)
-  const botTextColor = textColorForBg(targetHsb)
-  const botLabelColor = labelColorForBg(targetHsb)
-
-  // Score/feedback use the top half (player selection) color
-  const scoreTextColor = topTextColor
-
   const handleAnimationComplete = useCallback(() => {
     setTimeout(() => setShowFeedback(true), 200)
   }, [])
@@ -48,25 +39,21 @@ export function ResultScreen({
       {/* Color comparison -- top/bottom split (player top, target bottom) with labels */}
       <div className="absolute inset-0 flex flex-col">
         <div className="result-half" style={{ backgroundColor: playerColor }}>
-          <span className="result-label" style={{ color: topLabelColor }}>
-            Your selection
-          </span>
-          <span className="result-hsb" style={{ color: topTextColor }}>
+          <span className="result-label">Your selection</span>
+          <span className="result-hsb">
             H{playerHsb.h} S{playerHsb.s} B{playerHsb.b}
           </span>
         </div>
         <div className="result-half" style={{ backgroundColor: targetColor }}>
-          <span className="result-label" style={{ color: botLabelColor }}>
-            Original
-          </span>
-          <span className="result-hsb" style={{ color: botTextColor }}>
+          <span className="result-label">Original</span>
+          <span className="result-hsb">
             H{targetHsb.h} S{targetHsb.s} B{targetHsb.b}
           </span>
         </div>
       </div>
 
-      {/* Round indicator -- top-left, uses top half text color */}
-      <div className="result-round" style={{ color: topTextColor }}>
+      {/* Round indicator -- top-left */}
+      <div className="result-round">
         {round}/{totalRounds}
       </div>
 
@@ -76,18 +63,14 @@ export function ResultScreen({
           key={score}
           value={score}
           onAnimationComplete={handleAnimationComplete}
-          className=""
-          style={{ color: scoreTextColor }}
+          className="text-white"
           sound={sound}
         />
       </div>
 
       {/* Feedback text -- below score, right-aligned */}
       {showFeedback && (
-        <div
-          className="result-feedback"
-          style={{ color: scoreTextColor, animation: "descFadeIn 0.4s ease forwards" }}
-        >
+        <div className="result-feedback" style={{ animation: "descFadeIn 0.4s ease forwards" }}>
           {getScoreFeedback(score)}
         </div>
       )}
