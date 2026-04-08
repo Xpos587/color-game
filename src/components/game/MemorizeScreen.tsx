@@ -6,6 +6,7 @@ import { useTimer } from "@/hooks/useTimer";
 import { hsbToCss, textColorForBg } from "@/lib/color";
 import type { HSB } from "@/types/game";
 import type { useSound } from "@/hooks/useSound";
+import { css, cx } from "styled-system/css";
 
 interface MemorizeScreenProps {
   targetHsb: HSB;
@@ -44,7 +45,7 @@ function MemorizeTimer({ timeLimit, onTimeUp, sound, textColor }: { timeLimit: n
       <div className="memo-timer" style={{ color: textColor }}>
         <span
           key={displayInteger}
-          className="memo-timer-num animate-[numSlideIn_0.15s_ease-out_forwards]"
+          className={cx("memo-timer-num", css({ animationName: "numSlideIn", animationDuration: "0.15s", animationTimingFunction: "ease-out", animationFillMode: "forwards" }))}
         >
           <span id="timer-int">{intPart}</span>
           <span id="timer-dec" className="memo-timer-dec">{decPart}</span>
@@ -69,7 +70,7 @@ export function MemorizeScreen({
 
   return (
     <div
-      className="relative w-full h-full"
+      className={css({ position: "relative", width: "full", height: "full" })}
       style={{ backgroundColor: hsbToCss(targetHsb) }}
     >
       {/* Round indicator -- top left */}

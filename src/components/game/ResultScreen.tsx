@@ -5,6 +5,7 @@ import type { HSB } from "@/types/game";
 import { hsbToCss, getScoreFeedback } from "@/lib/color";
 import { AnimatedScore } from "@/components/ui/AnimatedScore";
 import type { useSound } from "@/hooks/useSound";
+import { css } from "styled-system/css";
 
 interface ResultScreenProps {
   targetHsb: HSB;
@@ -35,9 +36,9 @@ export function ResultScreen({
   }, []);
 
   return (
-    <div className="relative w-full h-full">
+    <div className={css({ position: "relative", width: "full", height: "full" })}>
       {/* Color comparison -- top/bottom split (player top, target bottom) with labels */}
-      <div className="absolute inset-0 flex flex-col">
+      <div className={css({ position: "absolute", inset: "0", display: "flex", flexDirection: "column" })}>
         <div
           className="result-half"
           style={{ backgroundColor: playerColor }}
@@ -65,7 +66,7 @@ export function ResultScreen({
           key={score}
           value={score}
           onAnimationComplete={handleAnimationComplete}
-          className="text-white"
+          className={css({ color: "white" })}
           sound={sound}
         />
       </div>
@@ -82,7 +83,7 @@ export function ResultScreen({
 
       {/* Continue button — always arrow icon */}
       <button onClick={onNext} className="result-continue">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={css({ width: "24px", height: "24px" })}>
           <path d="M14 5.75L20.25 12L14 18.25" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           <path d="M19.5 12H3.75" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>

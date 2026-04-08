@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import type { GameMode } from "@/types/game";
-import { cn } from "@/lib/utils";
+import { css, cx } from "styled-system/css";
 
 interface ModeToggleProps {
   mode: GameMode;
@@ -12,7 +12,7 @@ interface ModeToggleProps {
 
 function ToggleIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 shrink-0">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={css({ width: "24px", height: "24px", flexShrink: "0" })}>
       <path
         d="M1.75 12C1.75 8.54822 4.54822 5.75 8 5.75H16C19.4518 5.75 22.25 8.54822 22.25 12C22.25 15.4518 19.4518 18.25 16 18.25H8C4.54822 18.25 1.75 15.4518 1.75 12Z"
         stroke="currentColor"
@@ -48,7 +48,7 @@ export function ModeToggle({ mode, onToggle, className }: ModeToggleProps) {
       type="button"
       onClick={handleClick}
       title="It's not fun. You've been warned."
-      className={cn(
+      className={cx(
         "mode-toggle",
         !isHard ? "easy" : "hard",
         className
