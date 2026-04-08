@@ -3,7 +3,7 @@
 import { useCallback, useState } from "react"
 import { AnimatedScore } from "@/components/ui/AnimatedScore"
 import type { useSound } from "@/hooks/useSound"
-import { getScoreFeedback, hsbToCss } from "@/lib/color"
+import { getScoreFeedback, hsbToCss, textColorForBg } from "@/lib/color"
 import type { HSB } from "@/types/game"
 
 interface ResultScreenProps {
@@ -58,19 +58,19 @@ export function ResultScreen({
       </div>
 
       {/* Score -- top-right */}
-      <div className="result-score">
+      <div className="result-score" style={{ color: textColorForBg(playerHsb) }}>
         <AnimatedScore
           key={score}
           value={score}
           onAnimationComplete={handleAnimationComplete}
-          className="text-white"
+          className=""
           sound={sound}
         />
       </div>
 
       {/* Feedback text -- below score, right-aligned */}
       {showFeedback && (
-        <div className="result-feedback" style={{ animation: "descFadeIn 0.4s ease forwards" }}>
+        <div className="result-feedback" style={{ color: textColorForBg(playerHsb), animation: "descFadeIn 0.4s ease forwards" }}>
           {getScoreFeedback(score)}
         </div>
       )}
