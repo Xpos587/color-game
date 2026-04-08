@@ -1,0 +1,23 @@
+{
+  "name": "Dialed — Color Memory Game",
+  "short_name": "Dialed",
+  "description": "No login. No data. Just a game.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/seo/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/og-image.png",
+      "sizes": "1116x958",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
