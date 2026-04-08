@@ -1,18 +1,18 @@
-"use client";
+"use client"
 
-import { useCallback, useRef, useState } from "react";
-import { useMountEffect } from "@/lib/useMountEffect";
-import { GameShell } from "@/components/game/GameShell";
-import { Screen } from "@/components/game/Screen";
-import { IntroScreen } from "@/components/game/IntroScreen";
-import { CountdownController } from "@/components/game/CountdownController";
-import { MemorizeScreen } from "@/components/game/MemorizeScreen";
-import { PickerScreen } from "@/components/game/PickerScreen";
-import { ResultScreen } from "@/components/game/ResultScreen";
-import { TotalScreen } from "@/components/game/TotalScreen";
-import { useGameLoop } from "@/hooks/useGameLoop";
-import { useSound } from "@/hooks/useSound";
-import { calculateScore } from "@/lib/color";
+import { useCallback, useState } from "react"
+import { CountdownController } from "@/components/game/CountdownController"
+import { GameShell } from "@/components/game/GameShell"
+import { IntroScreen } from "@/components/game/IntroScreen"
+import { MemorizeScreen } from "@/components/game/MemorizeScreen"
+import { PickerScreen } from "@/components/game/PickerScreen"
+import { ResultScreen } from "@/components/game/ResultScreen"
+import { Screen } from "@/components/game/Screen"
+import { TotalScreen } from "@/components/game/TotalScreen"
+import { useGameLoop } from "@/hooks/useGameLoop"
+import { useSound } from "@/hooks/useSound"
+import { calculateScore } from "@/lib/color"
+import { useMountEffect } from "@/lib/useMountEffect"
 
 export default function Home() {
   const {
@@ -26,84 +26,82 @@ export default function Home() {
     nextRound,
     resetGame,
     memorizeTime,
-  } = useGameLoop();
+  } = useGameLoop()
 
-  const sound = useSound();
+  const sound = useSound()
 
   // Rule 4: mount-only one-time external sync (font loading)
   useMountEffect(() => {
-    const reveal = () => document.body.classList.add("fonts-ready");
-    document.fonts?.ready?.then(reveal);
-    const timeout = setTimeout(reveal, 2000);
-    return () => clearTimeout(timeout);
-  });
+    const reveal = () => document.body.classList.add("fonts-ready")
+    document.fonts?.ready?.then(reveal)
+    const timeout = setTimeout(reveal, 2000)
+    return () => clearTimeout(timeout)
+  })
 
-  const fadeActive = state.screen === "fade-to-black";
-  const [startFade, setStartFade] = useState(false);
+  const fadeActive = state.screen === "fade-to-black"
+  const [startFade, setStartFade] = useState(false)
 
   // Handle memorize timer expiry
   const handleMemorizeTimeUp = useCallback(() => {
     if (state.mode === "hard") {
-      setScreen("fade-to-black");
-      setTimeout(() => setScreen("picker"), 1000);
+      setScreen("fade-to-black")
+      setTimeout(() => setScreen("picker"), 1000)
     } else {
-      setScreen("picker");
+      setScreen("picker")
     }
-  }, [state.mode, setScreen]);
+  }, [state.mode, setScreen])
 
   // Handle picker submit
   const handlePickerSubmit = useCallback(() => {
-    const score = calculateScore(state.targetHsb, state.pickerHsb);
-    submitRound(state.pickerHsb, score);
-    sound.goLock();
-    setScreen("result");
-  }, [state.targetHsb, state.pickerHsb, submitRound, setScreen, sound]);
+    const score = calculateScore(state.targetHsb, state.pickerHsb)
+    submitRound(state.pickerHsb, score)
+    sound.goLock()
+    setScreen("result")
+  }, [state.targetHsb, state.pickerHsb, submitRound, setScreen, sound])
 
   // Handle result continue
   const handleResultNext = useCallback(() => {
-    sound.click();
-    nextRound();
-  }, [nextRound, sound]);
+    sound.click()
+    nextRound()
+  }, [nextRound, sound])
 
   // Handle play again
   const handlePlayAgain = useCallback(() => {
-    sound.click();
-    resetGame();
-  }, [resetGame, sound]);
+    sound.click()
+    resetGame()
+  }, [resetGame, sound])
 
   // Handle mode change on intro
   const handleModeChange = useCallback(
     (mode: "easy" | "hard") => {
       if (mode === "hard") {
-        sound.hardOn();
-        sound.robotHardcore();
+        sound.hardOn()
+        sound.robotHardcore()
       } else {
-        sound.hardOff();
-        sound.robotEasy();
+        sound.hardOff()
+        sound.robotEasy()
       }
-      setMode(mode);
+      setMode(mode)
     },
-    [sound, setMode]
-  );
+    [sound, setMode],
+  )
 
   // Handle play from intro
   const handlePlay = useCallback(() => {
-    sound.soloClickSound();
-    sound.robotSolo();
+    sound.soloClickSound()
+    sound.robotSolo()
     // Fade overlay fast → show countdown behind it → remove overlay
-    setStartFade(true);
+    setStartFade(true)
     setTimeout(() => {
-      startGame(state.mode);
-      setTimeout(() => sound.startPlaying(), 100);
-      setTimeout(() => setStartFade(false), 80);
-    }, 420);
-  }, [sound, startGame, state.mode]);
+      startGame(state.mode)
+      setTimeout(() => sound.startPlaying(), 100)
+      setTimeout(() => setStartFade(false), 80)
+    }, 420)
+  }, [sound, startGame, state.mode])
 
   // Get the latest round score for result screen
   const currentRoundScore =
-    state.roundScores.length > 0
-      ? state.roundScores[state.roundScores.length - 1]
-      : null;
+    state.roundScores.length > 0 ? state.roundScores[state.roundScores.length - 1] : null
 
   return (
     <main className="h-full">
@@ -183,5 +181,5 @@ export default function Home() {
         </Screen>
       </GameShell>
     </main>
-  );
+  )
 }

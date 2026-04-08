@@ -1,0 +1,7 @@
+# Bun configuration for color-game
+
+[install]
+exact = false
+
+[run]
+shell = "system"

@@ -1,0 +1,46 @@
+# $schema: https://taskfile.dev/schema.json
+version: '3'
+
+vars:
+  BUNX: bunx
+
+tasks:
+  dev:
+    desc: Start Next.js dev server
+    cmd: bun run dev
+
+  lint:
+    desc: Run Biome check
+    cmd: "{{.BUNX}} biome check ."
+
+  lint:fix:
+    desc: Run Biome check with auto-fix
+    cmd: "{{.BUNX}} biome check --write ."
+
+  format:
+    desc: Format code with Biome
+    cmd: "{{.BUNX}} biome format --write ."
+
+  typecheck:
+    desc: Run TypeScript type checker
+    cmd: "{{.BUNX}} tsc --noEmit"
+
+  build:
+    desc: Build for production
+    cmd: bun run build
+
+  check:
+    desc: Run all quality checks (lint, typecheck, build)
+    cmds:
+      - task: lint
+      - task: typecheck
+      - task: build
+
+  ci:
+    desc: Run CI pipeline (same as check)
+    cmds:
+      - task: check
+
+  default:
+    desc: Run all quality checks
+    cmd: task check

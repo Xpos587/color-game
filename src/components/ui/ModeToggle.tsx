@@ -1,18 +1,23 @@
-"use client";
+"use client"
 
-import { useCallback, useRef, useState } from "react";
-import type { GameMode } from "@/types/game";
-import { cn } from "@/lib/utils";
+import { useCallback, useRef, useState } from "react"
+import { cn } from "@/lib/utils"
+import type { GameMode } from "@/types/game"
 
 interface ModeToggleProps {
-  mode: GameMode;
-  onToggle: () => void;
-  className?: string;
+  mode: GameMode
+  onToggle: () => void
+  className?: string
 }
 
 function ToggleIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 shrink-0">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6 shrink-0"
+    >
       <path
         d="M1.75 12C1.75 8.54822 4.54822 5.75 8 5.75H16C19.4518 5.75 22.25 8.54822 22.25 12C22.25 15.4518 19.4518 18.25 16 18.25H8C4.54822 18.25 1.75 15.4518 1.75 12Z"
         stroke="currentColor"
@@ -25,37 +30,33 @@ function ToggleIcon() {
         strokeWidth="1.5"
       />
     </svg>
-  );
+  )
 }
 
 export function ModeToggle({ mode, onToggle, className }: ModeToggleProps) {
-  const [isSpring, setIsSpring] = useState(false);
-  const springTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [isSpring, setIsSpring] = useState(false)
+  const springTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const handleClick = useCallback(() => {
-    if (isSpring) return;
+    if (isSpring) return
     if (mode === "easy") {
-      setIsSpring(true);
-      springTimerRef.current = setTimeout(() => setIsSpring(false), 550);
+      setIsSpring(true)
+      springTimerRef.current = setTimeout(() => setIsSpring(false), 550)
     }
-    onToggle();
-  }, [isSpring, mode, onToggle]);
+    onToggle()
+  }, [isSpring, mode, onToggle])
 
-  const isHard = mode === "hard";
+  const isHard = mode === "hard"
 
   return (
     <button
       type="button"
       onClick={handleClick}
       title="It's not fun. You've been warned."
-      className={cn(
-        "mode-toggle",
-        !isHard ? "easy" : "hard",
-        className
-      )}
+      className={cn("mode-toggle", !isHard ? "easy" : "hard", className)}
     >
       <ToggleIcon />
       <span>{isHard ? "Hard" : "Easy"}</span>
     </button>
-  );
+  )
 }

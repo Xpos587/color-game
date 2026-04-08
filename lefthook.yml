@@ -1,0 +1,43 @@
+# $schema: https://raw.githubusercontent.com/evilmartians/lefthook/master/schema.json
+assert_lefthook_installed: true
+colors: true
+
+pre-commit:
+  parallel: true
+  commands:
+    protect-branches:
+      run: |
+        BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null)
+        if [[ $BRANCH =~ ^(main|master|develop)$ ]]; then
+          echo "❌ Direct commits to '$BRANCH' are not allowed."
+          echo "Please use a feature/hotfix/release branch."
+          exit 1
+        fi
+
+    biome-check:
+      glob: "*.{ts,tsx,js,jsx,json,css}"
+      run: bunx biome check --write --staged --no-errors-on-unmatched
+      stage_fixed: true
+
+commit-msg:
+  commands:
+    lint-commit-msg:
+      run: |
+        COMMIT_MSG=$(cat {1})
+
+        if echo "$COMMIT_MSG" | grep -qE "^Merge (branch|remote-tracking branch)"; then
+          exit 0
+        fi
+
+        PATTERN='^(feat|fix|refactor|chore|docs|test|ci|style|perf)[\w]*(\([^)]+\))?: .{3,}$'
+
+        if ! echo "$COMMIT_MSG" | grep -Eq "$PATTERN"; then
+          echo "❌ Bad commit message:"
+          echo "   $COMMIT_MSG"
+          echo ""
+          echo "✅ Use: type(scope): summary"
+          echo "   Types: feat, fix, refactor, chore, docs, test, ci, style, perf"
+          echo "   e.g. feat(game): add sound effects"
+          echo "        fix(picker): correct strip handle position"
+          exit 1
+        fi

@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { useEffect } from "react";
+import { useEffect } from "react"
 
-export function useMountEffect(effect: () => (void | (() => void))) {
+export function useMountEffect(effect: () => undefined | (() => void)) {
   // eslint-disable-next-line no-restricted-syntax, react-hooks/exhaustive-deps
-  useEffect(effect, []);
+  useEffect(effect, [effect])
 }

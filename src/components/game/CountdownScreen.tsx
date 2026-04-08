@@ -1,48 +1,39 @@
-"use client";
+"use client"
 
-import { useMemo } from "react";
-import type { GameMode, HSB } from "@/types/game";
-import { hsbToCss, randomHsb } from "@/lib/color";
+import { useMemo } from "react"
+import { hsbToCss, randomHsb } from "@/lib/color"
+import type { GameMode, HSB } from "@/types/game"
 
 interface CountdownScreenProps {
-  step: number;
-  mode: GameMode;
-  targetHsb: HSB;
-  wordOpacity: number;
-  onStepComplete: () => void;
+  step: number
+  mode: GameMode
+  targetHsb: HSB
+  wordOpacity: number
+  onStepComplete: () => void
 }
 
-const STEPS = ["Ready", "Set", "Go"] as const;
+const STEPS = ["Ready", "Set", "Go"] as const
 
-export function CountdownScreen({
-  step,
-  mode,
-  targetHsb,
-  wordOpacity,
-}: CountdownScreenProps) {
+export function CountdownScreen({ step, mode, targetHsb, wordOpacity }: CountdownScreenProps) {
   const bgColors = useMemo(() => {
     if (mode === "hard") {
-      return [
-        hsbToCss(randomHsb()),
-        hsbToCss(randomHsb()),
-        hsbToCss(targetHsb),
-      ];
+      return [hsbToCss(randomHsb()), hsbToCss(randomHsb()), hsbToCss(targetHsb)]
     }
-    return ["#000", "#000", "#000"];
-  }, [mode, targetHsb]);
+    return ["#000", "#000", "#000"]
+  }, [mode, targetHsb])
 
-  const word = STEPS[step] ?? "";
+  const word = STEPS[step] ?? ""
 
   return (
     <div
-      className="relative w-full h-full"
+      className="relative h-full w-full"
       style={{
         backgroundColor: bgColors[step] ?? "#000",
         transition: "background-color 0.45s ease",
       }}
     >
       <span
-        className="countdown-word absolute text-white font-medium"
+        className="countdown-word absolute font-medium text-white"
         style={{
           right: "16px",
           top: "6px",
@@ -58,5 +49,5 @@ export function CountdownScreen({
         {word}
       </span>
     </div>
-  );
+  )
 }
