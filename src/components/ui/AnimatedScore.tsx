@@ -8,6 +8,7 @@ interface AnimatedScoreProps {
   value: number
   onAnimationComplete?: () => void
   className?: string
+  style?: React.CSSProperties
   sound?: ReturnType<typeof useSound>
 }
 
@@ -145,10 +146,11 @@ export function AnimatedScore({
   value,
   onAnimationComplete,
   className,
+  style,
   sound,
 }: AnimatedScoreProps) {
   return (
-    <span className={className}>
+    <span className={className} style={style}>
       <ScoreAnimator
         key={value}
         value={value}
