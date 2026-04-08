@@ -70,10 +70,7 @@ export function ResultScreen({
 
       {/* Feedback text -- below score, right-aligned */}
       {showFeedback && (
-        <div
-          className="result-feedback"
-          style={{ color: textColorForBg(playerHsb), animation: "descFadeIn 0.4s ease forwards" }}
-        >
+        <div className="result-feedback" style={{ color: textColorForBg(playerHsb), animation: "descFadeIn 0.4s ease forwards" }}>
           {getScoreFeedback(score)}
         </div>
       )}
