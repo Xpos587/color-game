@@ -28,10 +28,10 @@ jobs:
       - name: Biome check
         run: bunx biome check .
 
-      - name: ast-grep check
-        uses: ast-grep/setup-action@v1
+      - name: Install ast-grep
+        uses: taiki-e/install-action@v2
         with:
-          version: 0.37.0
+          tool: ast-grep
 
       - name: Run ast-grep rules
         run: ast-grep scan
