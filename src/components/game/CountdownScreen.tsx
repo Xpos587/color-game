@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import { css, cx } from "styled-system/css";
 import type { GameMode, HSB } from "@/types/game";
 import { hsbToCss, randomHsb } from "@/lib/color";
 
@@ -36,14 +35,14 @@ export function CountdownScreen({
 
   return (
     <div
-      className={css({ position: "relative", width: "full", height: "full" })}
+      className="relative w-full h-full"
       style={{
         backgroundColor: bgColors[step] ?? "#000",
         transition: "background-color 0.45s ease",
       }}
     >
       <span
-        className={cx("countdown-word", css({ position: "absolute", color: "white", fontWeight: "500" }))}
+        className="countdown-word absolute text-white font-medium"
         style={{
           right: "16px",
           top: "6px",

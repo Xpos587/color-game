@@ -1,5 +1,44 @@
-/* === Desktop layout === */
+@import "tailwindcss";
 
+@theme inline {
+  --color-background: #000;
+  --color-foreground: #fff;
+  --color-text-secondary: #adadad;
+  --color-text-muted: rgba(255, 255, 255, 0.5);
+  --color-text-dim: rgba(255, 255, 255, 0.7);
+  --color-border-subtle: rgba(255, 255, 255, 0.15);
+  --color-success: #14b861;
+  --color-gold: #ffe103;
+  --font-sans: var(--font-suisse), var(--font-inter), -apple-system, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  overscroll-behavior: none;
+}
+
+body {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+}
+
+body.fonts-ready {
+  opacity: 1;
+}
+
+/* Desktop layout */
 @media (min-width: 768px) {
   html {
     transition: background-color 0.5s ease;
@@ -26,7 +65,12 @@
   }
 }
 
-/* === Animations kept in CSS (complex filters / @property) === */
+/* === Animations === */
+
+@keyframes ripple20 {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
 
 @property --ring-angle {
   syntax: '<angle>';
@@ -38,6 +82,26 @@
   to { --ring-angle: 360deg; }
 }
 
+@keyframes rainbowShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes placeholderShimmer {
+  0% { background-position: 150% center; }
+  100% { background-position: -50% center; }
+}
+
+@keyframes numSlideOut {
+  0% { transform: translateY(0); filter: blur(0); opacity: 1; }
+  100% { transform: translateY(22%); filter: blur(4px); opacity: 0; }
+}
+
+@keyframes numSlideIn {
+  0% { transform: translateY(-22%); filter: blur(4px); opacity: 0; }
+  100% { transform: translateY(0); filter: blur(0); opacity: 1; }
+}
+
 .num-out { animation: numSlideOut 0.12s ease-in forwards; }
 .num-in  { animation: numSlideIn 0.15s ease-out forwards; }
 .num-out-fast { animation: numSlideOut 0.06s ease-in forwards; }
@@ -45,6 +109,11 @@
 
 .desc-animate {
   animation: descFadeIn 0.4s ease-out forwards;
+}
+
+@keyframes descFadeIn {
+  0% { transform: translateY(-8px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
 }
 
 @keyframes springRight {
@@ -75,6 +144,30 @@
   78%  { transform: translateX(-0.3px); filter: none; }
   90%  { transform: translateX(0.1px);  filter: none; }
   100% { transform: translateX(0);      filter: none; }
+}
+
+@keyframes rgbSplit {
+  0%   { text-shadow: none; }
+  3%   { text-shadow: -6px 1px rgba(255,0,0,0.9), 6px -1px rgba(0,80,255,0.9); }
+  7%   { text-shadow: 8px -1.5px rgba(255,0,0,0.95), -3px 1px rgba(0,255,60,0.7), -7px 0.5px rgba(0,80,255,0.95); }
+  12%  { text-shadow: -9px 1px rgba(255,0,0,1), 4px -1px rgba(0,255,60,0.6), 8px 1.5px rgba(0,80,255,0.95); }
+  16%  { text-shadow: 7px 1.5px rgba(255,0,0,0.9), -6px -1px rgba(0,80,255,0.9); }
+  21%  { text-shadow: -5px -1px rgba(255,0,0,0.8), 2.5px 0.5px rgba(0,255,60,0.5), 5px -0.5px rgba(0,80,255,0.8); }
+  28%  { text-shadow: 4px 0.5px rgba(255,0,0,0.65), -3.5px 0 rgba(0,80,255,0.65); }
+  38%  { text-shadow: -2.5px 0 rgba(255,0,0,0.4), 1.5px 0 rgba(0,255,60,0.2), 2.5px 0 rgba(0,80,255,0.4); }
+  52%  { text-shadow: 1.2px 0 rgba(255,0,0,0.2), -1.2px 0 rgba(0,80,255,0.2); }
+  70%  { text-shadow: -0.5px 0 rgba(255,0,0,0.06), 0.5px 0 rgba(0,80,255,0.06); }
+  100% { text-shadow: none; }
+}
+
+@keyframes nameShimmer {
+  0% { background-position: 150% center; }
+  100% { background-position: -50% center; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 /* Elastic content entrance — horizontal shake with motion blur */
@@ -119,6 +212,19 @@
   80%  { transform: translateX(0.5px);  filter: none; }
   90%  { transform: translateX(-0.2px); filter: none; }
   100% { transform: translateX(0);      filter: none; }
+}
+
+/* Cell reveal for swatch cards */
+@keyframes cellReveal {
+  0% { opacity: 0; transform: scale(0.7) rotate(-4deg); }
+  60% { opacity: 1; transform: scale(1.04) rotate(1deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Fade in with ring expansion */
+@keyframes fadeInRing {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 /* === Screen Transitions === */

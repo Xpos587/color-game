@@ -5,7 +5,6 @@ import { HsbStrip } from "@/components/picker/HsbStrip";
 import { hsbToCss } from "@/lib/color";
 import type { HSB } from "@/types/game";
 import type { useSound } from "@/hooks/useSound";
-import { css, cx } from "styled-system/css";
 
 interface PickerScreenProps {
   pickerHsb: HSB;
@@ -57,10 +56,10 @@ export function PickerScreen({
   }, [sound]);
 
   return (
-    <div className={css({ position: "relative", width: "full", height: "full" })}>
+    <div className="relative w-full h-full">
       {/* Background color */}
       <div
-        className={css({ position: "absolute", inset: "0" })}
+        className="absolute inset-0"
         style={{ background: hsbToCss(pickerHsb), transition: "background 0.08s" }}
       />
 
@@ -101,7 +100,7 @@ export function PickerScreen({
       <div className="picker-info-fade picker-info">
         {/* "Your selection" label */}
         <div
-          className={cx("picker-label", css({ position: "absolute", zIndex: "20", pointerEvents: "none" }))}
+          className="absolute z-20 pointer-events-none picker-label"
           style={{
             bottom: "62px",
             fontSize: "12px",
@@ -117,7 +116,7 @@ export function PickerScreen({
 
         {/* HSB values */}
         <div
-          className={cx("picker-values", css({ position: "absolute", zIndex: "20", pointerEvents: "none" }))}
+          className="absolute z-20 pointer-events-none picker-values"
           style={{
             bottom: "44px",
             fontSize: "12px",
@@ -133,7 +132,7 @@ export function PickerScreen({
 
       {/* Round indicator */}
       <div
-        className={cx("picker-round", css({ position: "absolute", zIndex: "20", pointerEvents: "none" }))}
+        className="absolute z-20 pointer-events-none picker-round"
         style={{
           fontFamily: "inherit",
           fontWeight: 500,
@@ -148,7 +147,7 @@ export function PickerScreen({
 
       {/* Watermark */}
       <div
-        className={cx("picker-watermark", css({ position: "absolute", zIndex: "20", pointerEvents: "none" }))}
+        className="absolute z-20 pointer-events-none picker-watermark"
         style={{
           top: "30px",
           right: "30px",
@@ -164,7 +163,7 @@ export function PickerScreen({
 
       {/* Channel label */}
       <div
-        className={cx("picker-channel", css({ position: "absolute", zIndex: "20", pointerEvents: "none" }))}
+        className="absolute z-20 pointer-events-none picker-channel"
         style={{
           bottom: "30px",
           left: "143px",

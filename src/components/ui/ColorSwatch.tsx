@@ -2,7 +2,6 @@
 
 import { hsbToRgb } from "@/lib/color";
 import type { HSB } from "@/types/game";
-import { css, cx } from "styled-system/css";
 
 interface ColorSwatchProps {
   targetColor: string;
@@ -44,12 +43,12 @@ export function ColorSwatch({
 
   return (
     <div
-      className={cx("anim-cell", css({ position: "relative", aspectRatio: "square", width: "full", overflow: "hidden" }))}
+      className="relative aspect-square w-full overflow-hidden anim-cell"
       style={{ animationDelay: `${index * 0.06}s` }}
     >
       {/* Target color — bottom-right triangle */}
       <div
-        className={css({ position: "absolute", inset: "0" })}
+        className="absolute inset-0"
         style={{
           backgroundColor: targetColor,
           clipPath: "polygon(100% 0, 100% 100%, 0 100%)",
@@ -57,7 +56,7 @@ export function ColorSwatch({
       />
       {/* Player color — top-left triangle */}
       <div
-        className={css({ position: "absolute", inset: "0" })}
+        className="absolute inset-0"
         style={{
           backgroundColor: playerColor,
           clipPath: "polygon(0 0, 100% 0, 0 100%)",

@@ -6,8 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "ignoreUnknown": false,
-    "includes": ["**", "!styled-system"]
+    "ignoreUnknown": false
   },
   "formatter": {
     "enabled": false
@@ -73,7 +72,8 @@
   },
   "css": {
     "parser": {
-      "cssModules": false
+      "cssModules": false,
+      "tailwindDirectives": true
     },
     "linter": {
       "enabled": false

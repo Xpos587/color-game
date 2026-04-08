@@ -19,8 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "styled-system/*": ["./styled-system/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": [
@@ -29,8 +28,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts",
-    "styled-system"
+    "**/*.mts"
   ],
   "exclude": ["node_modules"]
 }

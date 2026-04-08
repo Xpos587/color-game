@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
-import { css } from "styled-system/css";
 import "./globals.css";
 
 const suisse = localFont({
@@ -64,18 +63,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${suisse.variable} ${inter.variable} ${css({ height: "full" })}`}
+      className={`${suisse.variable} ${inter.variable} h-full`}
     >
-      <body className={css({
-        height: "full",
-        overflow: "hidden",
-        background: "black",
-        fontFamily: "var(--font-suisse), var(--font-inter), -apple-system, system-ui, sans-serif",
-        fontWeight: "500",
-        fontSmoothing: "antialiased",
-        userSelect: "none",
-        WebkitUserSelect: "none" as const,
-      })}>
+      <body className="h-full overflow-hidden bg-black font-[family-name:var(--font-suisse),var(--font-inter),-apple-system,system-ui,sans-serif] font-medium antialiased select-none [-webkit-user-select:none]">
         {/* SVG motion blur filters for shake/earthquake animations */}
         <svg aria-hidden="true" style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}>
           <filter id="mblur-1"><feGaussianBlur in="SourceGraphic" stdDeviation="1.2 0" /></filter>

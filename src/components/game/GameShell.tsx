@@ -1,6 +1,6 @@
 "use client";
 
-import { css, cx } from "styled-system/css";
+import { cn } from "@/lib/utils";
 
 interface GameShellProps {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export function GameShell({ children, fadeActive, fastFade }: GameShellProps) {
       {/* Desktop chrome: logo in top-left corner */}
       <div className="desktop-chrome" style={{ position: "fixed", top: "21px", left: "26px", zIndex: 10 }}>
         <span
-          className={css({ color: "black", fontWeight: "500", cursor: "pointer" })}
+          className="text-black font-medium cursor-pointer"
           style={{
             fontSize: "21px",
             lineHeight: "21px",
@@ -31,7 +31,7 @@ export function GameShell({ children, fadeActive, fastFade }: GameShellProps) {
         {children}
 
         {/* Fade overlay for transitions */}
-        <div className={cx("fade-overlay", fastFade && "fast", fadeActive && "active")} />
+        <div className={cn("fade-overlay", fastFade && "fast", fadeActive && "active")} />
       </div>
     </>
   );
