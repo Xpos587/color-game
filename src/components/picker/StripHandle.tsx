@@ -1,13 +1,18 @@
-"use client"
+"use client";
 
 interface StripHandleProps {
-  position: number
-  onMouseDown: (e: React.MouseEvent) => void
-  onTouchStart: (e: React.TouchEvent) => void
-  isDragging: boolean
+  position: number;
+  onMouseDown: (e: React.MouseEvent) => void;
+  onTouchStart: (e: React.TouchEvent) => void;
+  isDragging: boolean;
 }
 
-export function StripHandle({ position, onMouseDown, onTouchStart, isDragging }: StripHandleProps) {
+export function StripHandle({
+  position,
+  onMouseDown,
+  onTouchStart,
+  isDragging,
+}: StripHandleProps) {
   return (
     <div
       className="strip-handle"
@@ -18,5 +23,5 @@ export function StripHandle({ position, onMouseDown, onTouchStart, isDragging }:
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
     />
-  )
+  );
 }

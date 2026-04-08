@@ -16,12 +16,8 @@ tasks:
       - ast-grep scan
 
   lint:fix:
-    desc: Run Biome check with auto-fix
-    cmd: "{{.BUNX}} biome check --write ."
-
-  format:
-    desc: Format code with Biome
-    cmd: "{{.BUNX}} biome format --write ."
+    desc: Run Biome lint with auto-fix (no formatting)
+    cmd: "{{.BUNX}} biome lint --write ."
 
   typecheck:
     desc: Run TypeScript type checker

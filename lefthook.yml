@@ -14,10 +14,9 @@ pre-commit:
           exit 1
         fi
 
-    biome-check:
+    biome-lint:
       glob: "*.{ts,tsx,js,jsx,json,css}"
-      run: bunx biome check --write --staged --no-errors-on-unmatched
-      stage_fixed: true
+      run: bunx biome lint --staged --no-errors-on-unmatched
 
     ast-grep-check:
       glob: "*.{ts,tsx}"

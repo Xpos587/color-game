@@ -1,7 +1,7 @@
-import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
-import localFont from "next/font/local"
-import "./globals.css"
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
 const suisse = localFont({
   src: "../../public/fonts/SuisseIntlSAlt-Medium.woff2",
@@ -9,7 +9,7 @@ const suisse = localFont({
   variable: "--font-suisse",
   display: "swap",
   preload: true,
-})
+});
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,7 +17,7 @@ const inter = Inter({
   variable: "--font-inter",
   display: "swap",
   preload: true,
-})
+});
 
 export const metadata: Metadata = {
   title: "Color Game — How Well Can You Remember Colors?",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     apple: "/images/og-image.png",
   },
   manifest: "/manifest.json",
-}
+};
 
 export const viewport: Viewport = {
   themeColor: "#000000",
@@ -53,30 +53,26 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false,
   viewportFit: "cover",
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${suisse.variable} ${inter.variable} h-full`}>
-      <body className="h-full select-none overflow-hidden bg-black font-[family-name:var(--font-suisse),var(--font-inter),-apple-system,system-ui,sans-serif] font-medium antialiased [-webkit-user-select:none]">
+    <html
+      lang="en"
+      className={`${suisse.variable} ${inter.variable} h-full`}
+    >
+      <body className="h-full overflow-hidden bg-black font-[family-name:var(--font-suisse),var(--font-inter),-apple-system,system-ui,sans-serif] font-medium antialiased select-none [-webkit-user-select:none]">
         {/* SVG motion blur filters for shake/earthquake animations */}
-        <svg
-          aria-hidden="true"
-          style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}
-        >
-          <filter id="mblur-1">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="1.2 0" />
-          </filter>
-          <filter id="mblur-2">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="0.6 0" />
-          </filter>
+        <svg aria-hidden="true" style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}>
+          <filter id="mblur-1"><feGaussianBlur in="SourceGraphic" stdDeviation="1.2 0" /></filter>
+          <filter id="mblur-2"><feGaussianBlur in="SourceGraphic" stdDeviation="0.6 0" /></filter>
         </svg>
         {children}
       </body>
     </html>
-  )
+  );
 }

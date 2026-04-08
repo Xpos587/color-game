@@ -9,13 +9,7 @@
     "ignoreUnknown": false
   },
   "formatter": {
-    "enabled": true,
-    "formatWithErrors": false,
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "lineEnding": "lf",
-    "lineWidth": 100,
-    "attributePosition": "auto"
+    "enabled": false
   },
   "linter": {
     "enabled": true,
@@ -45,13 +39,7 @@
         "useButtonType": "off"
       },
       "nursery": {
-        "useSortedClasses": {
-          "level": "error",
-          "options": {
-            "attributes": ["class", "className", "classList"],
-            "functions": ["clsx", "cva", "tw", "cn"]
-          }
-        }
+        "useSortedClasses": "off"
       }
     }
   },
