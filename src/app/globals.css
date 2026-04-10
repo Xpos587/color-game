@@ -579,53 +579,50 @@ body.fonts-ready {
 }
 
 .intro-body {
-  margin: auto 0 calc(307px + env(safe-area-inset-bottom, 0px)) 30px;
-  font-size: 21px;
+  margin: 20px 30px 0 30px;
+  font-size: 17px;
   font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.42px;
+  line-height: 1.25;
+  letter-spacing: -0.34px;
   color: #adadad;
   max-width: 338px;
 }
 
 .intro-body p {
-  margin-bottom: 17px;
+  margin-bottom: 14px;
 }
 
 .intro-body p:last-child {
   margin-bottom: 0;
 }
 
-.intro-mode-label {
-  position: absolute;
-  bottom: calc(209px + env(safe-area-inset-bottom, 0px));
-  left: 30px;
-  margin: 0;
-  font-size: 21px;
-  letter-spacing: -0.42px;
-  color: #fff;
-  transition: opacity 0.15s;
+/* Bottom area: play button + mode toggle */
+.intro-bottom {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: auto;
+  padding: 0 30px 0 30px;
+  padding-bottom: max(16px, env(safe-area-inset-bottom, 16px));
 }
 
-.intro-mode-buttons {
-  position: absolute;
-  bottom: calc(124px + env(safe-area-inset-bottom, 0px));
-  left: 30px;
-  right: 30px;
-  gap: 20px;
-  height: 64px;
-  z-index: 10;
+/* Footer: logo + credits */
+.intro-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+}
+
+.intro-footer-logo {
+  opacity: 0.3;
 }
 
 .intro-credit {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 31px 30px calc(38px + env(safe-area-inset-bottom, 0px));
   font-size: 11px;
   font-weight: 500;
   letter-spacing: -0.22px;
@@ -636,24 +633,8 @@ body.fonts-ready {
   transition: color 1.2s ease;
 }
 
-.intro-credit::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 30px;
-  right: 30px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.15);
-}
-
 .intro-credit:hover {
   color: #fff;
-}
-
-/* Mobile trophy button — bottom-right corner */
-.intro-trophy-mobile {
-  bottom: calc(80px + env(safe-area-inset-bottom, 0px));
-  right: 30px;
 }
 
 /* Leaderboard button (matches original .lb-btn) */
@@ -690,10 +671,6 @@ body.fonts-ready {
 }
 
 @media (min-width: 768px) {
-  .intro-trophy-mobile {
-    display: none;
-  }
-
   .lb-btn {
     bottom: var(--cp, 30px);
     right: 13px;
@@ -868,12 +845,7 @@ body.fonts-ready {
 
   /* IntroScreen desktop overrides */
 
-  /* Desktop: hide credit footer */
-  .intro-credit {
-    display: none;
-  }
-
-  /* Desktop: title size */
+  /* Desktop: title + body */
   .intro-title {
     font-size: 92px;
     margin: var(--cp, 30px) 0 0 var(--cp, 30px);
@@ -886,17 +858,14 @@ body.fonts-ready {
     max-width: 318px;
   }
 
-  .intro-mode-label {
-    position: static;
-    margin-top: 20px;
-    font-size: 14px;
-    letter-spacing: -0.28px;
+  .intro-bottom {
+    padding: 0 var(--cp, 30px) 0 var(--cp, 30px);
+    padding-bottom: var(--cp, 30px);
   }
 
-  .intro-mode-buttons {
-    bottom: var(--cp, 30px);
-    left: var(--cp, 30px);
-    right: auto;
+  .intro-footer {
+    padding: 0 var(--cp, 30px);
+    padding-bottom: var(--cp, 30px);
   }
 
   .intro-mode-buttons .mode-toggle,
@@ -1226,15 +1195,6 @@ body.fonts-ready {
     top: var(--cp, 30px);
     left: var(--cp, 30px);
   }
-}
-
-/* === Muted / Disabled Button === */
-
-.btn-muted {
-  opacity: 0.2;
-  pointer-events: none;
-  filter: grayscale(100%);
-  transform: scale(0.92);
 }
 
 /* === Result Half Labels (top/bottom split) === */
