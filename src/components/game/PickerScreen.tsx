@@ -148,18 +148,14 @@ export function PickerScreen({
 
       {/* Watermark */}
       <div
-        className="absolute z-20 pointer-events-none picker-watermark"
+        className="absolute z-[1] pointer-events-none picker-watermark"
         style={{
           top: "30px",
           right: "30px",
-          fontSize: "14px",
-          fontWeight: 500,
-          color: "rgba(255,255,255,0.5)",
-          letterSpacing: "-0.56px",
-          lineHeight: 1,
+          opacity: 0.25,
         }}
       >
-        <Logo style={{ height: "14px", width: "auto" }} />
+        <Logo style={{ height: "10px", width: "auto" }} />
       </div>
 
       {/* Channel label */}
