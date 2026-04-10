@@ -2,6 +2,7 @@
 
 import { useCallback } from "react";
 import { useMountEffect } from "@/lib/useMountEffect";
+import { Logo } from "@/components/ui/Logo";
 import { useTimer } from "@/hooks/useTimer";
 import { hsbToCss, textColorForBg } from "@/lib/color";
 import type { HSB } from "@/types/game";
@@ -82,7 +83,7 @@ export function MemorizeScreen({
 
       {/* Watermark */}
       <div className="memo-watermark" style={{ color: textColor.replace("#fff", "rgba(255,255,255,0.5)").replace("#000", "rgba(0,0,0,0.5)") }}>
-        Dialed.gg
+        <Logo style={{ height: "14px", width: "auto" }} />
       </div>
     </div>
   );

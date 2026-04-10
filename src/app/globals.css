@@ -1228,4 +1228,13 @@ body.fonts-ready {
   }
 }
 
+/* === Muted / Disabled Button === */
+
+.btn-muted {
+  opacity: 0.2;
+  pointer-events: none;
+  filter: grayscale(100%);
+  transform: scale(0.92);
+}
+
 /* === Result Half Labels (top/bottom split) === */

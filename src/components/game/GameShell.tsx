@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/ui/Logo";
 
 interface GameShellProps {
   children: React.ReactNode;
@@ -13,17 +14,10 @@ export function GameShell({ children, fadeActive, fastFade }: GameShellProps) {
     <>
       {/* Desktop chrome: logo in top-left corner */}
       <div className="desktop-chrome" style={{ position: "fixed", top: "21px", left: "26px", zIndex: 10 }}>
-        <span
-          className="text-black font-medium cursor-pointer"
-          style={{
-            fontSize: "21px",
-            lineHeight: "21px",
-            letterSpacing: "-0.84px",
-            fontFamily: "var(--font-suisse, 'Inter', sans-serif)",
-          }}
-        >
-          Dialed.
-        </span>
+        <Logo
+          className="cursor-pointer"
+          style={{ height: "21px", width: "auto", color: "#000" }}
+        />
       </div>
 
       {/* Game card container */}

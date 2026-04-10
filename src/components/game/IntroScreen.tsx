@@ -16,15 +16,6 @@ interface IntroScreenProps {
   sound: ReturnType<typeof useSound>;
 }
 
-function PersonIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <path d="M15.75 6.5C15.75 8.57107 14.0711 10.25 12 10.25C9.92893 10.25 8.25 8.57107 8.25 6.5C8.25 4.42893 9.92893 2.75 12 2.75C14.0711 2.75 15.75 4.42893 15.75 6.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M12.0011 13.25C8.60997 13.25 6.03711 15.2643 4.9836 18.1129C4.5748 19.2182 5.51944 20.25 6.69796 20.25H17.3043C18.4828 20.25 19.4274 19.2182 19.0186 18.1129C17.9651 15.2643 15.3923 13.25 12.0011 13.25Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 function UsersIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -153,14 +144,12 @@ export function IntroScreen({ mode, onModeChange, onPlay, sound }: IntroScreenPr
 
   return (
     <div ref={containerRef} className="relative flex h-full w-full flex-col bg-black">
-      {/* Leaderboard button — mobile: bottom-right */}
+      {/* Leaderboard button — mobile: bottom-right (disabled) */}
       <button
         type="button"
-        className="absolute z-20 flex items-center justify-center rounded-full text-white/50 transition-[transform,color] duration-150 intro-trophy-mobile"
+        className="absolute z-20 flex items-center justify-center rounded-full text-white/50 transition-[transform,color] duration-150 intro-trophy-mobile btn-muted"
         style={{ bottom: 'calc(30px + env(safe-area-inset-bottom, 0px))', right: '30px', width: '32px', height: '32px', background: 'none', border: 'none' }}
-        aria-label="High Scores"
-        onClick={() => sound.robotHighscores()}
-        onMouseEnter={() => sound.hover()}
+        aria-label="Рейтинг"
       >
         <TrophyIcon className="size-[24px]" />
       </button>
@@ -198,27 +187,25 @@ export function IntroScreen({ mode, onModeChange, onPlay, sound }: IntroScreenPr
             "hover:text-white hover:scale-[1.04]",
             "active:scale-[0.94]"
           )}
-          aria-label="Play solo"
+          aria-label="Играть"
         >
-          <PersonIcon className="size-[29px]" />
+          <span className="font-medium text-[22px] tracking-[-1.1px] relative z-[2]">ГАЗ</span>
         </button>
 
-        {/* Multiplayer button (visual only) */}
+        {/* Multiplayer button (disabled) */}
         <button
           type="button"
-          onMouseEnter={() => sound.multiHover()}
-          className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-white text-black shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-[transform] duration-300 ease-out hover:scale-[1.04] active:scale-[0.94] cursor-default"
-          aria-label="Multiplayer (coming soon)"
+          className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-white text-black shadow-[0_2px_8px_rgba(0,0,0,0.15)] cursor-default btn-muted"
+          aria-label="Мультиплеер (скоро)"
         >
           <UsersIcon className="size-[29px]" />
         </button>
 
-        {/* Daily button (visual only) */}
+        {/* Daily button (disabled) */}
         <button
           type="button"
-          onMouseEnter={() => sound.hover()}
-          className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-white text-black shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-[transform] duration-300 ease-out hover:scale-[1.04] active:scale-[0.94] cursor-default"
-          aria-label="Daily challenge (coming soon)"
+          className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-white text-black shadow-[0_2px_8px_rgba(0,0,0,0.15)] cursor-default btn-muted"
+          aria-label="Ежедневный вызов (скоро)"
         >
           <CalendarIcon className="size-[29px]" />
         </button>
@@ -226,13 +213,11 @@ export function IntroScreen({ mode, onModeChange, onPlay, sound }: IntroScreenPr
         {/* Mode toggle */}
         <ModeToggle mode={mode} onToggle={() => handleModeChange(mode === "easy" ? "hard" : "easy")} />
 
-        {/* Leaderboard button — desktop only, hidden on mobile (shown above instead) */}
+        {/* Leaderboard button — desktop (disabled) */}
         <button
           type="button"
-          className="hidden md:flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full text-[#808080] transition-[transform,color] duration-150 hover:scale-[1.08] hover:text-white active:scale-[0.95] cursor-default"
-          aria-label="High Scores"
-          onMouseEnter={() => sound.hover()}
-          onClick={() => sound.robotHighscores()}
+          className="hidden md:flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full text-[#808080] transition-[transform,color] duration-150 cursor-default btn-muted"
+          aria-label="Рейтинг"
         >
           <TrophyIcon className="size-[29px]" />
         </button>

@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { HsbStrip } from "@/components/picker/HsbStrip";
+import { Logo } from "@/components/ui/Logo";
 import { hsbToCss } from "@/lib/color";
 import type { HSB } from "@/types/game";
 import type { useSound } from "@/hooks/useSound";
@@ -158,7 +159,7 @@ export function PickerScreen({
           lineHeight: 1,
         }}
       >
-        Dialed.gg
+        <Logo style={{ height: "14px", width: "auto" }} />
       </div>
 
       {/* Channel label */}
