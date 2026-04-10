@@ -2,7 +2,6 @@
 
 import { useCallback } from "react";
 import { useMountEffect } from "@/lib/useMountEffect";
-import { Logo } from "@/components/ui/Logo";
 import { useTimer } from "@/hooks/useTimer";
 import { hsbToCss, textColorForBg } from "@/lib/color";
 import type { HSB } from "@/types/game";
@@ -81,17 +80,6 @@ export function MemorizeScreen({
       {/* Timer -- top right */}
       <MemorizeTimer key={round} timeLimit={timeLimit} onTimeUp={onTimeUp} sound={sound} textColor={textColor} />
 
-      {/* Watermark — aligned with round indicator */}
-      <div
-        className="absolute z-10 pointer-events-none"
-        style={{
-          top: "30px",
-          right: "30px",
-          opacity: 0.2,
-        }}
-      >
-        <Logo style={{ height: "8px", width: "auto" }} />
-      </div>
     </div>
   );
 }

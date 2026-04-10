@@ -5,6 +5,7 @@ import { useMountEffect } from "@/lib/useMountEffect";
 import type { GameMode } from "@/types/game";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/ui/ModeToggle";
+import { Logo } from "@/components/ui/Logo";
 import type { useSound } from "@/hooks/useSound";
 
 const MAX_SPEED = 1200;
@@ -221,6 +222,11 @@ export function IntroScreen({ mode, onModeChange, onPlay, sound }: IntroScreenPr
         >
           <TrophyIcon className="size-[29px]" />
         </button>
+      </div>
+
+      {/* Logo */}
+      <div style={{ position: 'absolute', bottom: 'calc(30px + env(safe-area-inset-bottom, 0px))', left: '30px', opacity: 0.4, pointerEvents: 'none' }}>
+        <Logo style={{ height: '16px' }} />
       </div>
 
       {/* Credit footer */}

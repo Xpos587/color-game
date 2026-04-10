@@ -2,7 +2,6 @@
 
 import { useCallback, useState } from "react";
 import { HsbStrip } from "@/components/picker/HsbStrip";
-import { Logo } from "@/components/ui/Logo";
 import { hsbToCss } from "@/lib/color";
 import type { HSB } from "@/types/game";
 import type { useSound } from "@/hooks/useSound";
@@ -144,18 +143,6 @@ export function PickerScreen({
         }}
       >
         {round}/{totalRounds}
-      </div>
-
-      {/* Watermark — aligned with round indicator */}
-      <div
-        className="absolute z-[1] pointer-events-none"
-        style={{
-          top: "30px",
-          right: "30px",
-          opacity: 0.2,
-        }}
-      >
-        <Logo style={{ height: "8px", width: "auto" }} />
       </div>
 
       {/* Channel label */}
