@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import type { HSB } from "@/types/game";
-import { hsbToCss, randomHsb } from "@/lib/color";
+import { hsbToCss, randomHsb, textColorForBg } from "@/lib/color";
 
 interface CountdownScreenProps {
   step: number;
@@ -18,15 +18,16 @@ export function CountdownScreen({
   targetHsb,
   wordOpacity,
 }: CountdownScreenProps) {
-  const bgColors = useMemo(() => {
-    return [
-      hsbToCss(randomHsb()),
-      hsbToCss(randomHsb()),
-      hsbToCss(targetHsb),
-    ];
+  const bgHsbs = useMemo(() => {
+    return [randomHsb(), randomHsb(), targetHsb];
   }, [targetHsb]);
 
+  const bgColors = useMemo(() => {
+    return bgHsbs.map(hsbToCss);
+  }, [bgHsbs]);
+
   const word = STEPS[step] ?? "";
+  const textColor = textColorForBg(bgHsbs[step] ?? { h: 0, s: 0, b: 0 });
 
   return (
     <div
@@ -37,7 +38,7 @@ export function CountdownScreen({
       }}
     >
       <span
-        className="countdown-word absolute text-white font-medium"
+        className="countdown-word absolute font-medium"
         style={{
           right: "16px",
           top: "6px",
@@ -48,6 +49,7 @@ export function CountdownScreen({
           letterSpacing: "-2.76px",
           lineHeight: 1,
           opacity: wordOpacity,
+          color: textColor,
         }}
       >
         {word}
