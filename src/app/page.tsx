@@ -43,13 +43,8 @@ export default function Home() {
 
   // Handle memorize timer expiry
   const handleMemorizeTimeUp = useCallback(() => {
-    if (state.mode === "hard") {
-      setScreen("fade-to-black");
-      setTimeout(() => setScreen("picker"), 1000);
-    } else {
-      setScreen("picker");
-    }
-  }, [state.mode, setScreen]);
+    setScreen("picker");
+  }, [setScreen]);
 
   // Handle picker submit
   const handlePickerSubmit = useCallback(() => {
@@ -122,7 +117,6 @@ export default function Home() {
             <CountdownController
               key={state.round}
               step={state.countdownStep}
-              mode={state.mode}
               targetHsb={state.targetHsb}
               nextCountdown={nextCountdown}
               setScreen={setScreen}

@@ -2,13 +2,12 @@
 
 import { useCallback, useRef, useState } from "react";
 import { useMountEffect } from "@/lib/useMountEffect";
-import type { GameMode, GameScreen, HSB } from "@/types/game";
+import type { GameScreen, HSB } from "@/types/game";
 import { CountdownScreen } from "@/components/game/CountdownScreen";
 import type { useSound } from "@/hooks/useSound";
 
 interface CountdownControllerProps {
   step: number;
-  mode: GameMode;
   targetHsb: HSB;
   nextCountdown: () => void;
   setScreen: (screen: GameScreen) => void;
@@ -18,7 +17,6 @@ interface CountdownControllerProps {
 
 export function CountdownController({
   step,
-  mode,
   targetHsb,
   nextCountdown,
   setScreen,
@@ -76,7 +74,6 @@ export function CountdownController({
   return (
     <CountdownScreen
       step={step}
-      mode={mode}
       targetHsb={targetHsb}
       wordOpacity={wordOpacity}
       onStepComplete={() => {}}
