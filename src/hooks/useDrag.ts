@@ -11,12 +11,8 @@ interface UseDragOptions {
 export function useDrag({ onDrag, onDragStart, onDragEnd }: UseDragOptions) {
   const [isDragging, setIsDragging] = useState(false);
   const lastY = useRef(0);
-
-  const handleMove = useCallback((clientY: number) => {
-    const deltaY = clientY - lastY.current;
-    lastY.current = clientY;
-    onDrag(deltaY);
-  }, [onDrag]);
+  const onDragRef = useRef(onDrag);
+  onDragRef.current = onDrag;
 
   const handleStart = useCallback(
     (clientY: number) => {
@@ -24,10 +20,16 @@ export function useDrag({ onDrag, onDragStart, onDragEnd }: UseDragOptions) {
       lastY.current = clientY;
       onDragStart?.();
 
-      const handleMouseMove = (e: MouseEvent) => handleMove(e.clientY);
+      const handleMouseMove = (e: MouseEvent) => {
+        const deltaY = e.clientY - lastY.current;
+        lastY.current = e.clientY;
+        onDragRef.current(deltaY);
+      };
       const handleTouchMove = (e: TouchEvent) => {
         e.preventDefault();
-        handleMove(e.touches[0].clientY);
+        const deltaY = e.touches[0].clientY - lastY.current;
+        lastY.current = e.touches[0].clientY;
+        onDragRef.current(deltaY);
       };
       const handleEnd = () => {
         setIsDragging(false);
@@ -43,7 +45,7 @@ export function useDrag({ onDrag, onDragStart, onDragEnd }: UseDragOptions) {
       window.addEventListener("touchmove", handleTouchMove, { passive: false });
       window.addEventListener("touchend", handleEnd);
     },
-    [handleMove, onDragStart, onDragEnd]
+    [onDragStart, onDragEnd]
   );
 
   const onMouseDown = useCallback(
