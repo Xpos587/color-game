@@ -579,7 +579,7 @@ body.fonts-ready {
 }
 
 .intro-body {
-  margin: 20px 30px 0 30px;
+  margin: 20px 30px auto 30px;
   font-size: 17px;
   font-weight: 500;
   line-height: 1.25;
@@ -600,9 +600,7 @@ body.fonts-ready {
 .intro-bottom {
   display: flex;
   justify-content: center;
-  margin-top: auto;
-  padding: 0 30px;
-  padding-bottom: max(16px, env(safe-area-inset-bottom, 16px));
+  padding: 0 30px 16px 30px;
 }
 
 .intro-pill {
@@ -627,6 +625,10 @@ body.fonts-ready {
 
 /* Footer: logo + credits */
 .intro-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -878,8 +880,7 @@ body.fonts-ready {
   }
 
   .intro-bottom {
-    padding: 0 var(--cp, 30px);
-    padding-bottom: var(--cp, 30px);
+    padding: 0 var(--cp, 30px) 30px var(--cp, 30px);
   }
 
   .intro-pill {
@@ -889,6 +890,11 @@ body.fonts-ready {
 
   .intro-pill .mode-toggle {
     padding: 0 12px;
+  }
+
+  .intro-footer {
+    padding: 0 var(--cp, 30px);
+    padding-bottom: var(--cp, 30px);
   }
 
   .intro-footer {
