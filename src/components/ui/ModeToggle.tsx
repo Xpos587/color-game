@@ -47,7 +47,7 @@ export function ModeToggle({ mode, onToggle, className }: ModeToggleProps) {
     <button
       type="button"
       onClick={handleClick}
-      title="It's not fun. You've been warned."
+      title="Это не весело. Ты был предупрежден."
       className={cn(
         "mode-toggle",
         !isHard ? "easy" : "hard",
@@ -55,7 +55,7 @@ export function ModeToggle({ mode, onToggle, className }: ModeToggleProps) {
       )}
     >
       <ToggleIcon />
-      <span>{isHard ? "Hard" : "Easy"}</span>
+      <span>{isHard ? "Сложно" : "Легко"}</span>
     </button>
   );
 }

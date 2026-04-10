@@ -12,7 +12,7 @@ interface CountdownScreenProps {
   onStepComplete: () => void;
 }
 
-const STEPS = ["Ready", "Set", "Go"] as const;
+const STEPS = ["Внимание", "На старт", "Марш"] as const;
 
 export function CountdownScreen({
   step,

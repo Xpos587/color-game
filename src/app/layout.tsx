@@ -22,11 +22,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Color Game — How Well Can You Remember Colors?",
   description:
-    "We show you colors. You recreate them from memory. Challenge friends to beat your score. It's harder than you think. Play free.",
+    "Мы показываем цвета. Ты воссоздаёшь их по памяти. Брось вызов друзьям — пусть попытаются побить твой счёт. Это сложнее, чем кажется. Играй бесплатно.",
   openGraph: {
     title: "Color Game — How Well Can You Remember Colors?",
     description:
-      "We show you colors. You recreate them from memory. Challenge friends to beat your score. It's harder than you think. Play free.",
+      "Мы показываем цвета. Ты воссоздаёшь их по памяти. Брось вызов друзьям — пусть попытаются побить твой счёт. Это сложнее, чем кажется. Играй бесплатно.",
     images: ["/images/og-default.png"],
     type: "website",
     siteName: "Dialed",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Color Game — How Well Can You Remember Colors?",
     description:
-      "We show you colors. You recreate them from memory. Challenge friends to beat your score. It's harder than you think.",
+      "Мы показываем цвета. Ты воссоздаёшь их по памяти. Брось вызов друзьям — пусть попытаются побить твой счёт. Это сложнее, чем кажется.",
     images: ["/images/og-default.png"],
   },
   icons: {
@@ -62,7 +62,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="ru"
       className={`${suisse.variable} ${inter.variable} h-full`}
     >
       <body className="h-full overflow-hidden bg-black font-[family-name:var(--font-suisse),var(--font-inter),-apple-system,system-ui,sans-serif] font-medium antialiased select-none [-webkit-user-select:none]">

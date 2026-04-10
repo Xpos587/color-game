@@ -52,7 +52,7 @@ function MemorizeTimer({ timeLimit, onTimeUp, sound, textColor }: { timeLimit: n
         </span>
       </div>
       <div className="memo-timer-label" style={{ color: textColor }}>
-        Seconds to remember
+        Секунды на запоминание
       </div>
     </>
   );

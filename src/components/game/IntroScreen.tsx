@@ -167,9 +167,9 @@ export function IntroScreen({ mode, onModeChange, onPlay, sound }: IntroScreenPr
 
       {/* Body text — pinned above mode buttons on mobile, top-aligned on desktop */}
       <div className="intro-body">
-        <p>Humans can&apos;t reliably recall colors. This is a simple game to see how good (or bad) you are at&nbsp;it.</p>
-        <p>We&apos;ll show you five colors, then you&apos;ll try and recreate&nbsp;them.</p>
-        <p className="intro-mode-label">Solo or multiplayer?</p>
+        <p>Люди не могут в точности повторить цвета. Это простая игра, чтобы проверить, насколько хорош (или плох) ты в&nbsp;этом.</p>
+        <p>Мы покажем тебе пять цветов, а ты попробуешь их&nbsp;повторить.</p>
+        <p className="intro-mode-label">Одиночная игра</p>
       </div>
 
       {/* Mode buttons area — absolute bottom */}

@@ -106,7 +106,7 @@ export function TotalScreen({
           onMouseEnter={() => sound.hover()}
           className="go-btn go-text"
         >
-          Play again
+          Играть снова
         </button>
       </div>
     </div>

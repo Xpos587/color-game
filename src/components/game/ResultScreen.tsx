@@ -42,14 +42,14 @@ export function ResultScreen({
           className="result-half"
           style={{ backgroundColor: playerColor }}
         >
-          <span className="result-label">Your selection</span>
+          <span className="result-label">Твой выбор</span>
           <span className="result-hsb">H{playerHsb.h} S{playerHsb.s} B{playerHsb.b}</span>
         </div>
         <div
           className="result-half"
           style={{ backgroundColor: targetColor }}
         >
-          <span className="result-label">Original</span>
+          <span className="result-label">Оригинал</span>
           <span className="result-hsb">H{targetHsb.h} S{targetHsb.s} B{targetHsb.b}</span>
         </div>
       </div>

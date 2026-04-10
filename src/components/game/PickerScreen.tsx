@@ -112,7 +112,7 @@ export function PickerScreen({
             transition: "color 0.15s",
           }}
         >
-          Your selection
+          Твой выбор
         </div>
 
         {/* HSB values */}
@@ -178,9 +178,9 @@ export function PickerScreen({
           transition: "opacity 0.15s",
         }}
       >
-        {activeChannel === "hue" && "HUE"}
-        {activeChannel === "saturation" && "SATURATION"}
-        {activeChannel === "brightness" && "BRIGHTNESS"}
+        {activeChannel === "hue" && "ОТТЕНОК"}
+        {activeChannel === "saturation" && "НАСЫЩЕННОСТЬ"}
+        {activeChannel === "brightness" && "ЯРКОСТЬ"}
       </div>
 
       {/* Go button — fade in with delay */}
