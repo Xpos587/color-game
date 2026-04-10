@@ -127,14 +127,14 @@ export function IntroScreen({ mode, onModeChange, onPlay, sound }: IntroScreenPr
             onMouseEnter={handleSoloEnter}
             onMouseLeave={handleSoloLeave}
             className={cn(
-              "play-button flex items-center justify-center rounded-lg",
+              "play-button flex h-[34px] items-center justify-center rounded-lg",
               "bg-white text-black",
               "hover:text-white hover:scale-[1.04]",
               "active:scale-[0.94]"
             )}
             aria-label="Играть"
           >
-            <span className="font-bold text-[13px] tracking-[1.6px] relative z-[2] px-4 py-1.5 uppercase">GO</span>
+            <span className="font-bold text-[13px] tracking-[1.6px] relative z-[2] px-4 uppercase">GO</span>
           </button>
 
           <div className="intro-pill-divider" />
