@@ -13,7 +13,7 @@ export function Logo({ className, style }: LogoProps) {
   return (
     <span
       className={className}
-      style={style}
+      style={{ display: "inline-block", ...style }}
       // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted static SVG asset
       dangerouslySetInnerHTML={{ __html: LOGO_SVG }}
     />
