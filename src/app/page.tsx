@@ -13,6 +13,7 @@ import { TotalScreen } from "@/components/game/TotalScreen";
 import { useGameLoop } from "@/hooks/useGameLoop";
 import { useSound } from "@/hooks/useSound";
 import { calculateScore } from "@/lib/color";
+import { Logo } from "@/components/ui/Logo";
 
 export default function Home() {
   const {
@@ -102,6 +103,9 @@ export default function Home() {
 
   return (
     <main className="h-full">
+      <div className="page-logo">
+        <Logo style={{ height: '24px' }} />
+      </div>
       <GameShell fadeActive={fadeActive || startFade} fastFade={startFade}>
         <Screen id="intro" isActive={state.screen === "intro"}>
           <IntroScreen
