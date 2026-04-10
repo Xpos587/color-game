@@ -134,7 +134,7 @@ export function IntroScreen({ mode, onModeChange, onPlay, sound }: IntroScreenPr
             )}
             aria-label="Играть"
           >
-            <span className="font-bold text-[13px] tracking-[1.6px] relative z-[2] px-6 uppercase">GO</span>
+            <span className="font-bold text-[13px] tracking-[1.6px] relative z-[2] px-5 py-1 uppercase">GO</span>
           </button>
 
           <div className="intro-pill-divider" />
