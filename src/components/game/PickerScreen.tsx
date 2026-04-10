@@ -146,16 +146,16 @@ export function PickerScreen({
         {round}/{totalRounds}
       </div>
 
-      {/* Watermark */}
+      {/* Watermark — aligned with round indicator */}
       <div
-        className="absolute z-[1] pointer-events-none picker-watermark"
+        className="absolute z-[1] pointer-events-none"
         style={{
           top: "30px",
           right: "30px",
-          opacity: 0.25,
+          opacity: 0.2,
         }}
       >
-        <Logo style={{ height: "10px", width: "auto" }} />
+        <Logo style={{ height: "8px", width: "auto" }} />
       </div>
 
       {/* Channel label */}

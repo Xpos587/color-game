@@ -81,9 +81,16 @@ export function MemorizeScreen({
       {/* Timer -- top right */}
       <MemorizeTimer key={round} timeLimit={timeLimit} onTimeUp={onTimeUp} sound={sound} textColor={textColor} />
 
-      {/* Watermark */}
-      <div className="memo-watermark" style={{ color: textColor.replace("#fff", "rgba(255,255,255,0.25)").replace("#000", "rgba(0,0,0,0.25)") }}>
-        <Logo style={{ height: "10px", width: "auto" }} />
+      {/* Watermark — aligned with round indicator */}
+      <div
+        className="absolute z-10 pointer-events-none"
+        style={{
+          top: "30px",
+          right: "30px",
+          opacity: 0.2,
+        }}
+      >
+        <Logo style={{ height: "8px", width: "auto" }} />
       </div>
     </div>
   );
