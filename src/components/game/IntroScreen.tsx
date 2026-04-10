@@ -117,28 +117,30 @@ export function IntroScreen({ mode, onModeChange, onPlay, sound }: IntroScreenPr
         <p>Мы покажем тебе пять цветов, а ты попробуешь их&nbsp;повторить.</p>
       </div>
 
-      {/* Bottom area: play button + mode toggle */}
+      {/* Bottom area: play pill + mode toggle */}
       <div className="intro-bottom">
-        {/* Solo play button — with rainbow ring + hum */}
-        <button
-          ref={soloRef}
-          type="button"
-          onClick={onPlay}
-          onMouseEnter={handleSoloEnter}
-          onMouseLeave={handleSoloLeave}
-          className={cn(
-            "play-button flex h-11 w-11 shrink-0 items-center justify-center rounded-full",
-            "bg-white text-black shadow-[0_2px_8px_rgba(0,0,0,0.15)]",
-            "hover:text-white hover:scale-[1.04]",
-            "active:scale-[0.94]"
-          )}
-          aria-label="Играть"
-        >
-          <span className="font-medium text-[15px] tracking-[-0.75px] relative z-[2]">ГАЗ</span>
-        </button>
+        <div className="intro-pill">
+          <button
+            ref={soloRef}
+            type="button"
+            onClick={onPlay}
+            onMouseEnter={handleSoloEnter}
+            onMouseLeave={handleSoloLeave}
+            className={cn(
+              "play-button flex h-11 items-center justify-center rounded-full",
+              "bg-white text-black",
+              "hover:text-white hover:scale-[1.04]",
+              "active:scale-[0.94]"
+            )}
+            aria-label="Играть"
+          >
+            <span className="font-medium text-[15px] tracking-[-0.75px] relative z-[2] px-4">ГАЗ</span>
+          </button>
 
-        {/* Mode toggle */}
-        <ModeToggle mode={mode} onToggle={() => handleModeChange(mode === "easy" ? "hard" : "easy")} />
+          <div className="intro-pill-divider" />
+
+          <ModeToggle mode={mode} onToggle={() => handleModeChange(mode === "easy" ? "hard" : "easy")} />
+        </div>
       </div>
 
       {/* Footer: logo + credits */}
